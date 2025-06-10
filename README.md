@@ -95,8 +95,8 @@ This project analyzes customer satisfaction for mobile banking apps of three Eth
 
 1. Clone this repo:
    ```bash
-   git clone https://github.com/your-username/fintech-review-analysis.git
-   cd fintech-review-analysis
+   git clone https://github.com/5237-mests/Customer_Experience_Analytics_for_Fintech_Apps.git
+   cd Customer_Experience_Analytics_for_Fintech_Apps
    ```
 
 ---
