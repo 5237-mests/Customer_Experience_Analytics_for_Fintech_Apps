@@ -1,66 +1,102 @@
-## 📊 Ethiopian Mobile Banking App Review Analysis
+# 📊 Ethiopian Mobile Banking App Review Analysis
 
 This project analyzes customer satisfaction for mobile banking apps of three Ethiopian banks—**Commercial Bank of Ethiopia (CBE)**, **Bank of Abyssinia (BOA)**, and **Dashen Bank**—based on Google Play Store reviews. It simulates a real consulting project for Omega Consultancy.
 
 ---
 
-### ✅ Task 1: Data Collection & Preprocessing
+## ✅ Task 1: Data Collection & Preprocessing
 
-**Goals:**
+### Goals:
 
 - Scrape 400+ reviews from each bank's app (total: 1200+).
 - Clean, deduplicate, and normalize the dataset.
 
-**Steps:**
+### Steps:
 
 - Scraped using [`google-play-scraper`](https://github.com/digitalepidemiologylab/gplaycli).
 - Removed duplicates and missing entries.
-- Normalized review date to `YYYY-MM-DD` format.
+- Normalized review dates to `YYYY-MM-DD` format.
 - Stored final cleaned data in `cleaned_bank_reviews.csv`.
 
-📁 **CSV Columns:**
+### 📁 CSV Columns:
 
 - `review`, `rating`, `date`, `bank`, `source`
 
 ---
 
-### ✅ Task 2: Sentiment & Thematic Analysis
+## ✅ Task 2: Sentiment & Thematic Analysis
 
-**Sentiment Analysis**
+### Sentiment Analysis:
 
-- Used `distilbert-base-uncased-finetuned-sst-2-english` via Hugging Face.
-- Labeled each review as: `positive`, `negative`, or `neutral`
-- Saved sentiment output in `sentiment_reviews.csv`.
+- Used `distilbert-base-uncased-finetuned-sst-2-english` from Hugging Face.
+- Also applied VADER for comparison and validation.
+- Labeled reviews as: `positive`, `negative`, or `neutral`.
+- Saved results in `sentiment_reviews.csv`.
 
-**Thematic Analysis**
+### Thematic Analysis:
 
-- Preprocessed reviews using spaCy: lemmatization, stopword removal.
-- Extracted keywords and bi-grams using TF-IDF.
-- Grouped extracted keywords into 5 key themes:
+- Preprocessed text using spaCy: tokenization, stopword removal, lemmatization.
+- Extracted keywords and bi-grams using TF-IDF and CountVectorizer.
+- Defined and grouped into five main themes:
   1. **Account Access Issues**
   2. **Transaction Performance**
   3. **UI/UX**
   4. **Customer Support**
   5. **Feature Requests**
-- Saved output in `thematic_reviews.csv`
 
-📁 **Output Columns:**
+### 📁 Output Columns:
 
 - `review`, `sentiment_label`, `sentiment_score`, `identified_themes`
 
 ---
 
-### 🔧 Environment Setup
+## ✅ Task 3: Keyword & Theme Grouping
 
-1. Clone this repo
-2. Create a virtual environment:
+### Approach:
+
+- Grouped semantically similar keywords into themes using TF-IDF + domain knowledge.
+- Created a manual mapping of keywords to themes using curated dictionaries.
+- Stored enhanced data in `theme_mapped_reviews.csv`.
+
+---
+
+## ✅ Task 4: Insights & Recommendations
+
+### Key Insights:
+
+- **Dashen Bank**: Positive UI/UX feedback but recurring transaction failures.
+- **CBE**: Most negative reviews tied to login and access issues.
+- **BOA**: Appreciated for simplicity but users reported lag and poor response.
+
+### Visualizations:
+
+- Sentiment distribution per bank.
+- Monthly sentiment trend lines.
+- Bar charts of most common complaint themes.
+- Word clouds per sentiment category.
+
+> 📍 All plots are available in `notebooks/task_4_analysis.ipynb`.
+
+### Recommendations:
+
+- Implement crash/error reporting inside apps.
+- Prioritize login reliability and session stability.
+- Add modern features like personal finance tracking (BOA, CBE).
+- Improve customer support responsiveness via live chat or in-app tickets.
+
+### Ethical Considerations:
+
+- Reviews can be biased by personal emotions or temporary bugs.
+- Regional languages (e.g., Amharic, Afan Oromo) may be underrepresented.
+
+---
+
+## 🔧 Environment Setup
+
+1. Clone this repo:
    ```bash
-   python -m venv venv
-   source venv/bin/activate  # or .\venv\Scripts\activate
-   ```
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
+   git clone https://github.com/your-username/fintech-review-analysis.git
+   cd fintech-review-analysis
    ```
 
 ---
